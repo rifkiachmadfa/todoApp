@@ -21,9 +21,12 @@ export default function deleteDialog({
 }: DeleteDialogProps) {
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/todo/${Number(id)}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         setIsDelete(false);
       }

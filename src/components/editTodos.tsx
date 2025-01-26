@@ -50,16 +50,19 @@ export default function editTodos({
   const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: values.title,
-          description: values.description,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/todo/${Number(id)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: values.title,
+            description: values.description,
+          }),
+        }
+      );
       const data = await response.json();
 
       if (!response.ok) {

@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
+import { NextApiResponse, NextApiRequest } from "next";
 
 // POST Todo
 export async function POST(req: NextRequest) {
