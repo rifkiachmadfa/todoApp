@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Update Todo by ID
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } } // Corrected params type
+  { params }: { params: { id: number } } // Corrected params type
 ) {
   const { id } = params; // Access the dynamic ID directly
 
@@ -19,7 +19,7 @@ export async function POST(
     }
 
     const data = await db.todo.update({
-      where: { id: Number(id) }, // Convert id to number if required
+      where: { id: id }, // Convert id to number if required
       data: {
         Title: title,
         Description: description,
@@ -39,7 +39,7 @@ export async function POST(
 // Delete Todo by ID
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: number } }
 ) {
   const { id } = params; // Access the dynamic ID directly
 
@@ -53,7 +53,7 @@ export async function DELETE(
     }
 
     await db.todo.delete({
-      where: { id: Number(id) }, // Convert id to number if required
+      where: { id: id }, // Convert id to number if required
     });
 
     return NextResponse.json({ message: "Todo deleted successfully" });
