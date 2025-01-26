@@ -51,9 +51,7 @@ export default function editTodos({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const response = await fetch(
-        `https://todo-nas4d3fig-rifkiachmadfas-projects.vercel.app/${Number(
-          id
-        )}`,
+        `https://todo-app-zeta-vert.vercel.app/${Number(id)}`,
         {
           method: "PUT",
           headers: {
