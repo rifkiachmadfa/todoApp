@@ -1,17 +1,9 @@
 import React from "react";
 import CardTodo from "./cardTodo";
+import { db } from "@/lib/db";
 
-interface Todo {
-  id: number;
-  Title: string;
-  Description: string;
-}
-
-interface ListTodosProps {
-  todos: Todo[]; // Explicitly define the todos prop type
-}
-
-export default function ListTodos({ todos }: ListTodosProps) {
+export default async function ListTodos() {
+  const todos = await db.todo.findMany();
   return (
     <ul>
       {!todos.length ? (
