@@ -2,11 +2,13 @@ import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
 // Update Todo by ID
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { id: string } } // Dynamic parameter id as string
-) {
-  const { id } = params; // Access the dynamic route parameter `id`
+export async function POST(req: NextRequest) {
+  // Extract ID from the URL path (assumes the URL structure is /api/todo/[id])
+  const id = req.nextUrl.pathname.split("/").pop();
+
+  if (!id) {
+    return NextResponse.json({ error: "ID is required" }, { status: 400 });
+  }
 
   try {
     const { title, description } = await req.json();
@@ -19,48 +21,43 @@ export async function POST(
     }
 
     const data = await db.todo.update({
-      where: { id: Number(id) }, // Convert `id` to a number if required by your database
+      where: { id: Number(id) }, // Convert `id` to a number
       data: {
         Title: title,
         Description: description,
       },
     });
 
-    return NextResponse.json({ message: "Todo updated successfully", data });
+    return NextResponse.json({ message: "Updated" }, { status: 200 });
   } catch (error: unknown) {
     console.error("Error updating todo:", error);
-    return NextResponse.json(
-      { error: "Failed to update todo" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Error" }, { status: 400 });
   }
 }
 
 // Delete Todo by ID
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } } // Dynamic parameter id as string
-) {
-  const { id } = params; // Access the dynamic route parameter `id`
+export async function DELETE(req: NextRequest) {
+  // Extract ID from the URL path
+  const id = req.nextUrl.pathname.split("/").pop();
+
+  if (!id) {
+    return NextResponse.json({ message: "Invalid ID" }, { status: 400 });
+  }
 
   try {
-    if (!id) {
-      return NextResponse.json(
-        { error: "ID parameter is required" },
-        { status: 400 }
-      );
-    }
-
     await db.todo.delete({
-      where: { id: Number(id) }, // Convert `id` to a number if required by your database
+      where: { id: Number(id) }, // Convert `id` to a number
     });
 
-    return NextResponse.json({ message: "Todo deleted successfully" });
+    return NextResponse.json(
+      { message: "Todo deleted successfully" },
+      { status: 200 }
+    );
   } catch (error: unknown) {
     console.error("Error deleting todo:", error);
     return NextResponse.json(
       { error: "Failed to delete todo" },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }
