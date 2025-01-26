@@ -9,7 +9,7 @@ interface Todo {
 
 export default async function Home() {
   try {
-    const apiUrl = "http://localhost:3000/api";
+    const apiUrl = "http://localhost:3000/api/todo";
 
     const response = await fetch(apiUrl);
 
