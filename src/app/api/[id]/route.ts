@@ -1,5 +1,5 @@
+// api/[id]/route.ts
 import { db } from "@/lib/db";
-import { promises } from "dns";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
@@ -21,7 +21,7 @@ export async function POST(
     });
     return NextResponse.json({ message: "updated", data });
   } catch (error) {
-    return NextResponse.json({ message: "error", error });
+    console.error("Error updating todo:", error); // Log the error to identify issues
   }
 }
 
@@ -40,6 +40,6 @@ export async function DELETE(
 
     return NextResponse.json({ message: "data deleted" });
   } catch (error) {
-    return NextResponse.json({ message: "error", error });
+    console.error("Error deleting todo:", error); // Log the error for better insight
   }
 }
