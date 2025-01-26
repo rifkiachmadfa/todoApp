@@ -21,12 +21,9 @@ export default function deleteDialog({
 }: DeleteDialogProps) {
   const handleDelete = async () => {
     try {
-      const response = await fetch(
-        `https://todo-app-zeta-vert.vercel.app/api/todo/${Number(id)}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`/api/todo/${Number(id)}`, {
+        method: "DELETE",
+      });
       if (response.ok) {
         setIsDelete(false);
       }

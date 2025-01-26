@@ -39,7 +39,7 @@ export default function createTodo() {
   const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch(`http://localhost:3000/todo`, {
+      const response = await fetch(`/api/todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

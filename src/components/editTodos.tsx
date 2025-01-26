@@ -50,19 +50,16 @@ export default function editTodos({
   const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch(
-        `https://todo-app-zeta-vert.vercel.app/api/todo/${Number(id)}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: values.title,
-            description: values.description,
-          }),
-        }
-      );
+      const response = await fetch(`/api/todo/${Number(id)}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: values.title,
+          description: values.description,
+        }),
+      });
       const data = await response.json();
 
       if (!response.ok) {
