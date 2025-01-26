@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Update Todo by ID
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } } // Ensure `params` type matches Next.js expectations
+  { params }: { params: Record<string, string> } // Ensure `params` type matches Next.js expectations
 ) {
   const { id } = params; // Access the dynamic route parameter `id`
 
