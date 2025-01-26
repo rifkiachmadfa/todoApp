@@ -11,6 +11,7 @@ type Todo = {
 
 export default async function ListTodos() {
   const todos: Todo[] = await db.todo.findMany();
+  console.log(todos);
   return (
     <ul>
       {!todos.length ? (

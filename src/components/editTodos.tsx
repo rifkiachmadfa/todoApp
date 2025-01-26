@@ -53,7 +53,7 @@ export default function editTodos({
       const response = await fetch(
         `http://localhost:3000/api/todo/${Number(id)}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
