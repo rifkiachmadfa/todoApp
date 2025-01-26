@@ -9,10 +9,8 @@ interface Todo {
 
 export default async function Home() {
   try {
-    const apiUrl =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/api"
-        : "/api";
+    const apiUrl = "http://localhost:3000/api";
+
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
