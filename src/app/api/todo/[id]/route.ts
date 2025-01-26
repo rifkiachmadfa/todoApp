@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Update Todo by ID
 export async function POST(
   req: NextRequest,
-  { params }: { params: Record<string, string> } // Ensure `params` type matches Next.js expectations
+  { params }: { params: { id: string } } // Dynamic parameter id as string
 ) {
   const { id } = params; // Access the dynamic route parameter `id`
 
@@ -39,7 +39,7 @@ export async function POST(
 // Delete Todo by ID
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } } // Ensure `params` type matches Next.js expectations
+  { params }: { params: { id: string } } // Dynamic parameter id as string
 ) {
   const { id } = params; // Access the dynamic route parameter `id`
 
