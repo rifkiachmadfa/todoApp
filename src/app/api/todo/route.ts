@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { error } from "console";
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -12,9 +13,12 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { title, description } = await req.json();
-
   try {
+    const { title, description } = await req.json();
+    if (!title || !description) {
+      return NextResponse.json({ error: "invalid input", status: 400 });
+    }
+
     const data = await db.todo.create({
       data: {
         Title: title,
