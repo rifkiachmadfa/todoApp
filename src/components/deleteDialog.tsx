@@ -22,7 +22,9 @@ export default function deleteDialog({
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/todo/${Number(id)}`,
+        `https://todo-nas4d3fig-rifkiachmadfas-projects.vercel.app/${Number(
+          id
+        )}`,
         {
           method: "DELETE",
         }
