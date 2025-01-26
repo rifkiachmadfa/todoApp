@@ -23,3 +23,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "error", error }, { status: 500 });
   }
 }
+export async function GET() {
+  try {
+    const data = await db.todo.findMany();
+
+    return NextResponse.json({ message: "success", data }, { status: 201 });
+  } catch (error) {
+    console.error("Error creating todo:", error);
+    return NextResponse.json({ message: "error", error }, { status: 500 });
+  }
+}
