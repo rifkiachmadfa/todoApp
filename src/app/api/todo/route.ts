@@ -23,13 +23,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "error", error }, { status: 500 });
   }
 }
+
+// GET all Todos
 export async function GET() {
   try {
-    const data = await db.todo.findMany();
+    const todos = await db.todo.findMany();
 
-    return NextResponse.json({ message: "success", data }, { status: 201 });
+    // Return the todos as a JSON response
+    return NextResponse.json(todos, { status: 200 });
   } catch (error) {
-    console.error("Error creating todo:", error);
-    return NextResponse.json({ message: "error", error }, { status: 500 });
+    console.error("Error fetching todos:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch todos" },
+      { status: 500 }
+    );
   }
 }
