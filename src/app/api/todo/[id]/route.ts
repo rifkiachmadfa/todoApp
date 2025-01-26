@@ -6,7 +6,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: number } } // Corrected params type
 ) {
-  const { id } = params; // Access the dynamic ID directly
+  const { id } = await params; // Access the dynamic ID directly
 
   try {
     const { title, description } = await req.json();
