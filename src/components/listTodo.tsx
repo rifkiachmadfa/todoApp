@@ -2,8 +2,15 @@ import React from "react";
 import CardTodo from "./cardTodo";
 import { db } from "@/lib/db";
 
+// Define the type for a Todo
+type Todo = {
+  id: number;
+  Title: string;
+  Description: string;
+};
+
 export default async function ListTodos() {
-  const todos = await db.todo.findMany();
+  const todos: Todo[] = await db.todo.findMany();
   return (
     <ul>
       {!todos.length ? (
