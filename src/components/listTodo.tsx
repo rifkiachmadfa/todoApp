@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
 import CardTodo from "./cardTodo";
 
 // Define the type for a Todo
@@ -8,11 +9,19 @@ type Todo = {
   Description: string;
 };
 
-export default async function ListTodos() {
-  const response = await fetch(
-    "https://todo-app-rifkiachmadfas-projects.vercel.app/api/todo"
-  );
-  const todos: Todo[] = await response.json();
+export default function ListTodos() {
+  const [todos, setTodos] = useState<Todo[]>([]); // Change variable name to 'todos'
+
+  useEffect(() => {
+    async function fetchTodo() {
+      const response = await fetch(
+        "https://todo-app-rifkiachmadfas-projects.vercel.app/api/todo"
+      );
+      const todos: Todo[] = await response.json();
+      setTodos(todos); // Set the state with 'todos'
+    }
+    fetchTodo();
+  }, []);
 
   return (
     <ul>
