@@ -9,7 +9,9 @@ type Todo = {
 };
 
 export default async function ListTodos() {
-  const response = await fetch("http://localhost:3000/api/todo");
+  const response = await fetch(
+    "https://todo-app-zeta-vert.vercel.app/api/todo"
+  );
   const todos: Todo[] = await response.json();
 
   return (
