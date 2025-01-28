@@ -1,6 +1,5 @@
 import React from "react";
 import CardTodo from "./cardTodo";
-import { db } from "@/lib/db";
 
 // Define the type for a Todo
 type Todo = {
@@ -10,8 +9,8 @@ type Todo = {
 };
 
 export default async function ListTodos() {
-  const response = await db.todo.findMany();
-  const todos: Todo[] = response;
+  const response = await fetch("http://localhost:3000/api/todo");
+  const todos: Todo[] = await response.json();
 
   return (
     <ul>

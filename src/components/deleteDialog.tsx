@@ -6,8 +6,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { redirect } from "next/navigation";
 
+import { useRouter } from "next/navigation";
 interface DeleteDialogProps {
   isDelete: boolean;
   setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,6 +19,7 @@ export default function deleteDialog({
   setIsDelete,
   id,
 }: DeleteDialogProps) {
+  const router = useRouter();
   const handleDelete = async () => {
     try {
       const response = await fetch(`/api/todo/${Number(id)}`, {
@@ -30,7 +31,7 @@ export default function deleteDialog({
     } catch (error) {
       console.error(error);
     } finally {
-      redirect("/");
+      router.refresh();
     }
   };
 

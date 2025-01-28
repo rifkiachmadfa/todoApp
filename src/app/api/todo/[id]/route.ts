@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Update Todo by ID
 export async function PUT(req: NextRequest) {
-  // Extract ID from the URL path (assumes the URL structure is /api/todo/[id])
   const id = req.nextUrl.pathname.split("/").pop();
 
   if (!id) {

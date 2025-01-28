@@ -1,12 +1,5 @@
 import ListTodos from "@/components/listTodo";
 import Greeting from "@/components/greeting";
-import { db } from "@/lib/db";
-
-interface Todo {
-  id: number;
-  Title: string;
-  Description: string;
-}
 
 export default async function Home() {
   return (
