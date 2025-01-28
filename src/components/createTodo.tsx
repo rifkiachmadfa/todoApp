@@ -40,7 +40,7 @@ export default function createTodo() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const response = await fetch(
-        `https://todo-app-zeta-vert.vercel.app/api/todo`,
+        `https://todo-app-rifkiachmadfas-projects.vercel.app/api/todo`,
         {
           method: "POST",
           headers: {
