@@ -19,6 +19,9 @@ export default function ListTodos() {
       );
       const todos: Todo[] = await response.json();
       setTodos(todos); // Set the state with 'todos'
+      const intervalId = setInterval(fetchTodo, 5000);
+
+      return () => clearInterval(intervalId);
     }
     fetchTodo();
   }, []);

@@ -17,7 +17,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(2).max(100),
@@ -58,7 +58,7 @@ export default function createTodo() {
         console.log("error", data);
       } else {
         console.log("success", data);
-        router.refresh();
+        redirect;
         form.reset();
       }
       setIsOpen(false);
